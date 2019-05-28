@@ -24,10 +24,23 @@ function* getZooAnimals() {
     }
 }
 
+function* postZooAnimals(action){
+    try {
+        const response = yield axios.post('/zoo', action.payload);
+        yield put ({
+            type: 'SET_ZOO_ANIMALS',
+            payload: response.data
+        });
+    } catch (error){
+        console.log(`error HELP: ${error}`)
+    }
+}
+
 
 // Your saga should listen for the action type of `GET_ZOO_ANIMALS`
 function* rootSaga() {
-    yield takeEvery('GET_ZOO_ANIMALS', getZooAnimals);
+    yield takeEvery('GET_ZOO_ANIMALS', getZooAnimals)
+    yield takeEvery ('POST_ZOO_ANIMALS', postZooAnimals)
 
 }
 
