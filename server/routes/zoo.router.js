@@ -3,7 +3,8 @@ const router = express.Router();
 const pool = require('../modules/pool.js');
 
 router.get('/', (req, res) => {
-    const queryString = `SELECT * FROM "species";`;
+    const queryString = `SELECT * FROM "class"
+                        JOIN "species" ON "class"."id"="species"."class_id";`;
     pool.query(queryString)
     .then((response) => {
         res.send(response.rows);
