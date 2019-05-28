@@ -27,9 +27,9 @@ function* getZooAnimals() {
 function* postZooAnimals(action){
     try {
         const response = yield axios.post('/zoo', action.payload);
+        console.log(response)
         yield put ({
-            type: 'SET_ZOO_ANIMALS',
-            payload: response.data
+            type: 'GET_ZOO_ANIMALS'
         });
     } catch (error){
         console.log(`error HELP: ${error}`)
