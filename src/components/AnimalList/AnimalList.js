@@ -7,24 +7,33 @@ import AnimalListItem from '../AnimalListItem/AnimalListItem';
 class AnimalList extends Component {
 
     componentDidMount() {
-        const action = {type: 'GET_ZOO_ANIMALS'};
+        const action = { type: 'GET_ZOO_ANIMALS' };
         this.props.dispatch(action);
     }
 
     // Renders the list of animals
     render() {
         return (
-            <table className="AnimalList">
-                <thead>
-                    <tr><th>Species</th><th>Class</th></tr>
-                </thead>
-                <tbody>
-                    {/* Render each item from the zooAnimal reducer */}
-                    {this.props.reduxState.zooAnimals.map((classData, i) => {
-                        return (<AnimalListItem key={i} classData={classData} />);
-                    })}
-                </tbody>
-            </table>
+            <div>
+                <table className="AnimalList">
+                    <thead>
+                        <tr><th>Species</th><th>Class</th></tr>
+                    </thead>
+                    <tbody>
+                        {/* Render each item from the zooAnimal reducer */}
+                        {this.props.reduxState.zooAnimals.map((classData, i) => {
+                            return (<AnimalListItem key={i} classData={classData} />);
+                        })}
+                    </tbody>
+                </table>
+                <input
+                type="text"
+                placeholder="Species"/>
+                <input
+                type="text"
+                placeholder="Class"/>
+            </div>
+
         );
     }
 }
